@@ -18,3 +18,7 @@ type Fingerprint struct {
 	CreatedAt   time.Time       `json:"created_at"`
 	UpdatedAt   time.Time       `json:"updated_at"`
 }
+
+func InsertFingerprintQuery() string {
+	return `INSERT INTO fingerprint.fingerprints (id, name, description, pattern, type, keywords, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+}

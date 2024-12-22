@@ -46,6 +46,10 @@ message MatchFingerprintRequest {
 }
 
 message MatchFingerprintResponse {
-    string matched_id = 1;
+    repeated MatchedFingerprint matched = 1;
+}
+
+message MatchedFingerprint {
+    string id = 1;
     string pattern = 2;
 }

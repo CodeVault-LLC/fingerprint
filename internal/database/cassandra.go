@@ -72,6 +72,42 @@ func createKeyspace(session *gocql.Session) error {
 	return session.Query(query).Exec()
 }
 
+func (d *Database) BulkInsert(fingerprints []entities.Fingerprint) error {
+	batch := d.Db.NewBatch(gocql.LoggedBatch)
+
+	for _, fingerprint := range fingerprints {
+		batch.Query(entities.InsertFingerprintQuery(), fingerprint.Id, fingerprint.Name, fingerprint.Description, fingerprint.Pattern, fingerprint.Type, fingerprint.Keywords, fingerprint.CreatedAt, fingerprint.UpdatedAt)
+	}
+
+	if err := d.Db.ExecuteBatch(batch); err != nil {
+		logger.Log.Error("Failed to execute batch insert", zap.Error(err))
+		return err
+	}
+
+	return nil
+}
+
+func (d *Database) TableExists(table string) bool {
+	query := fmt.Sprintf("SELECT COUNT(*) FROM system_schema.tables WHERE keyspace_name = '%s' AND table_name = '%s'", config.Config.DatabaseKeyspace, table)
+	iter := d.Db.Query(query).Iter()
+	defer iter.Close()
+
+	var count int
+	iter.Scan(&count)
+
+	if count > 0 {
+		query = fmt.Sprintf("SELECT COUNT(*) FROM %s.%s", config.Config.DatabaseKeyspace, table)
+		iter = d.Db.Query(query).Iter()
+		defer iter.Close()
+
+		iter.Scan(&count)
+
+		return count > 0
+	}
+
+	return false
+}
+
 func (d *Database) Close() {
 	d.Db.Close()
 }

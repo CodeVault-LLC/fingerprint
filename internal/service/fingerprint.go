@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/codevault-llc/fingerprint/internal/database"
@@ -78,5 +77,19 @@ func (s *FingerprintService) MatchFingerprint(ctx context.Context, req *pb.Match
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
-	return nil, fmt.Errorf("no match found")
+	fingerprints, err := s.repository.MatchFingerprint(req.Source)
+	if err != nil {
+		logger.Log.Error("Error matching fingerprint", zap.Error(err))
+		return nil, err
+	}
+
+	var matches []*pb.MatchedFingerprint
+	for _, fingerprint := range fingerprints {
+		matches = append(matches, &pb.MatchedFingerprint{
+			Id:      fingerprint.Id,
+			Pattern: fingerprint.Pattern,
+		})
+	}
+
+	return &pb.MatchFingerprintResponse{Matched: matches}, nil
 }

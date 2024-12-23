@@ -19,7 +19,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	config, err := config.NewInternalConfig(".env")
+	config, err := config.NewInternalConfig()
 	if err != nil {
 		log.Error("Error loading config", zap.Error(err))
 		os.Exit(1)

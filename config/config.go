@@ -13,11 +13,10 @@ type InternalConfig struct {
 	ServiceHost string
 
 	// Database
-	DatabaseHost     string
-	DatabasePort     string
-	DatabaseUser     string
-	DatabasePass     string
-	DatabaseKeyspace string
+	DatabaseAddr string
+	DatabaseUser string
+	DatabasePass string
+	DatabaseName string
 }
 
 func getEnv(key, fallback string) string {
@@ -30,8 +29,8 @@ func getEnv(key, fallback string) string {
 
 var Config *InternalConfig
 
-func NewInternalConfig(path string) (*InternalConfig, error) {
-	err := godotenv.Load(path)
+func NewInternalConfig() (*InternalConfig, error) {
+	err := godotenv.Load()
 	if err != nil {
 		logger.Log.Error("Error loading .env file", zap.Error(err))
 		return nil, err
@@ -41,11 +40,11 @@ func NewInternalConfig(path string) (*InternalConfig, error) {
 		ServicePort: getEnv("SERVICE_PORT", "50051"),
 		ServiceHost: getEnv("SERVICE_HOST", "localhost"),
 
-		DatabaseHost:     getEnv("DATABASE_HOST", "localhost"),
-		DatabasePort:     getEnv("DATABASE_PORT", "9042"),
-		DatabaseUser:     getEnv("DATABASE_USER", "cassandra"),
-		DatabasePass:     getEnv("DATABASE_PASS", "cassandra"),
-		DatabaseKeyspace: getEnv("DATABASE_KEYSPACE", "fingerprint"),
+		// Database
+		DatabaseAddr: getEnv("DATABASE_ADDR", "localhost:9000"),
+		DatabaseUser: getEnv("DATABASE_USER", "default"),
+		DatabasePass: getEnv("DATABASE_PASS", ""),
+		DatabaseName: getEnv("DATABASE_NAME", "fingerprint"),
 	}
 
 	Config = config

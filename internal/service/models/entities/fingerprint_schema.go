@@ -1,20 +1,17 @@
 package entities
 
-import "github.com/codevault-llc/fingerprint/config"
-
 func CreateFingerprintSchema() string {
-	keyspace := config.Config.DatabaseKeyspace
-
-	schema := `CREATE TABLE IF NOT EXISTS ` + keyspace + `.fingerprints (
-		id UUID PRIMARY KEY,
-		name TEXT,
-		description TEXT,
-		pattern TEXT,
-		type TEXT,
-		keywords SET<TEXT>,
-		created_at TIMESTAMP,
-		updated_at TIMESTAMP
-	);`
+	schema := `CREATE TABLE IF NOT EXISTS fingerprints (
+			id UUID DEFAULT generateUUIDv4(),
+			name String,
+			description String,
+			pattern String,
+			type String,
+			keywords Array(String),
+			created_at DateTime DEFAULT now(),
+			updated_at DateTime DEFAULT now()
+		) ENGINE = MergeTree()
+		ORDER BY id;`
 
 	return schema
 }

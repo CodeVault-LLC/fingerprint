@@ -15,6 +15,27 @@
       "keywords": ["google", "tag manager", "gtm"]
     },
     {
+      "name": "reCAPTCHA v2/v3",
+      "description": "Google reCAPTCHA is a security service that protects your site from spam and abuse.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?google\\.com\\/recaptcha\\/.*",
+      "type": "script",
+      "keywords": ["captcha", "recaptcha", "google"]
+    },
+    {
+      "name": "Cloudflare Turnstile",
+      "description": "Cloudflare Turnstile is a CAPTCHA alternative for verifying users.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?challenges\\.cloudflare\\.com\\/turnstile\\/.*",
+      "type": "script",
+      "keywords": ["cloudflare", "captcha", "security"]
+    },
+    {
+      "name": "hCaptcha",
+      "description": "hCaptcha is a CAPTCHA service focused on privacy and security.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?hcaptcha\\.com\\/.*",
+      "type": "script",
+      "keywords": ["captcha", "hcaptcha", "security"]
+    },
+    {
       "name": "Facebook Pixel",
       "description": "Facebook Pixel is an analytics tool that allows you to measure the effectiveness of your advertising by understanding the actions people take on your website.",
       "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?connect\\.facebook\\.net\\/.*\\/fbevents\\.js",
@@ -36,6 +57,27 @@
       "keywords": ["google", "ads", "conversion tracking"]
     },
     {
+      "name": "Cloudflare CDN",
+      "description": "Cloudflare CDN provides performance and security for web content delivery.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/.*",
+      "type": "script",
+      "keywords": ["cloudflare", "cdn", "javascript", "css"]
+    },
+    {
+      "name": "jsDelivr CDN",
+      "description": "jsDelivr is a free CDN for open-source projects.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?cdn\\.jsdelivr\\.net\\/.*",
+      "type": "script",
+      "keywords": ["jsdelivr", "cdn", "javascript", "css"]
+    },
+    {
+      "name": "Akamai CDN",
+      "description": "Akamai CDN offers web and security solutions for content delivery.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?akamaihd\\.net\\/.*",
+      "type": "script",
+      "keywords": ["akamai", "cdn", "security"]
+    },
+    {
       "name": "Google Fonts",
       "description": "Google Fonts is a library of web fonts that can be embedded on websites.",
       "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?fonts\\.googleapis\\.com\\/.*",
@@ -55,20 +97,6 @@
       "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?use\\.fontawesome\\.com\\/.*",
       "type": "stylesheet",
       "keywords": ["font awesome", "icons", "cdn"]
-    },
-    {
-      "name": "jQuery",
-      "description": "jQuery is a fast, small, and feature-rich JavaScript library.",
-      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?code\\.jquery\\.com\\/jquery-.*\\.js",
-      "type": "script",
-      "keywords": ["jquery", "javascript", "library"]
-    },
-    {
-      "name": "Cloudflare CDN",
-      "description": "Cloudflare CDN provides performance and security for web content delivery.",
-      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?cdnjs\\.cloudflare\\.com\\/ajax\\/libs\\/.*",
-      "type": "script",
-      "keywords": ["cloudflare", "cdn", "javascript", "css"]
     },
     {
       "name": "Microsoft Clarity",
@@ -104,6 +132,27 @@
       "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?player\\.vimeo\\.com\\/video\\/.*",
       "type": "iframe",
       "keywords": ["vimeo", "embed", "videos"]
+    },
+    {
+      "name": "Paddle Checkout Script",
+      "description": "Paddle Checkout Script is used for online payments and subscriptions.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?cdn\\.paddle\\.com\\/checkout\\/.*",
+      "type": "script",
+      "keywords": ["paddle", "checkout", "payments"]
+    },
+    {
+      "name": "Stripe.js",
+      "description": "Stripe.js is a JavaScript library for Stripe payment processing.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?js\\.stripe\\.com\\/v3\\/",
+      "type": "script",
+      "keywords": ["stripe", "payments", "checkout"]
+    },
+    {
+      "name": "PayPal Checkout Script",
+      "description": "PayPal Checkout Script is used for integrating PayPal payments.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?www\\.paypal\\.com\\/sdk\\/js",
+      "type": "script",
+      "keywords": ["paypal", "checkout", "payments"]
     }
   ]
 }

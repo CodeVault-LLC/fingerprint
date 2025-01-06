@@ -153,6 +153,13 @@
       "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?www\\.paypal\\.com\\/sdk\\/js",
       "type": "script",
       "keywords": ["paypal", "checkout", "payments"]
+    },
+    {
+      "name": "Sentry XHR",
+      "description": "Sentry is an error tracking service that helps developers monitor and fix crashes in real-time.",
+      "regex": "(?i)(?:https?:\\/\\/)?(?:www\\.)?sentry\\.io\\/api\\/.*",
+      "type": "xhr",
+      "keywords": ["sentry", "error tracking", "xhr"]
     }
   ]
 }

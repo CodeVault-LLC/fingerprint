@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/codevault-llc/fingerprint/internal/database"
 	"github.com/codevault-llc/fingerprint/internal/updater/models/repository"
@@ -62,6 +63,9 @@ func loadFingerprints() ([]types.Fingerprint, error) {
 }
 
 func validateJSONSchema(schemaPath, dataPath string) error {
+	schemaPath = filepath.ToSlash(schemaPath)
+	dataPath = filepath.ToSlash(dataPath)
+
 	schemaLoader := gojsonschema.NewReferenceLoader("file://" + schemaPath)
 	dataLoader := gojsonschema.NewReferenceLoader("file://" + dataPath)
 
